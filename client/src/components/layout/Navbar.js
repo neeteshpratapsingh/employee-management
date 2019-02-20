@@ -11,25 +11,15 @@ class Navbar extends Component {
 	}
 
 	render() {
-		const { isAuthenticated, employer } = this.props.auth;
+		const { isAuthenticated } = this.props.auth;
 
 		const authLinks = (
 			<ul className="navbar-nav ml-auto">
 				<li className="nav-item">
-					<Link className="nav-link" to="/feed">
-						Post Feed
-					</Link>
-				</li>
-				<li className="nav-item">
-					{/* <a href="" onClick={this.onLogoutClick.bind(this)} className="nav-link"> */}
-					<img
-						className="rounded-circle"
-						alt={employer.name}
-						style={{ width: '25px', marginRight: '5px' }}
-						title="You must have a Gravatar connected to your email to display an image"
-					/>{' '}
-					Logout
-					{/* </a> */}
+					<a href="" onClick={this.onLogoutClick.bind(this)} className="nav-link">
+						{' '}
+						Logout
+					</a>
 				</li>
 			</ul>
 		);
@@ -58,18 +48,7 @@ class Navbar extends Component {
 					<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-nav">
 						<span className="navbar-toggler-icon" />
 					</button>
-
-					<div className="collapse navbar-collapse" id="mobile-nav">
-						<ul className="navbar-nav mr-auto">
-							<li className="nav-item">
-								<Link className="nav-link" to="/profiles">
-									{' '}
-									Employer information
-								</Link>
-							</li>
-						</ul>
-						{isAuthenticated ? authLinks : guestLinks}
-					</div>
+					{isAuthenticated ? authLinks : guestLinks}
 				</div>
 			</nav>
 		);

@@ -10,7 +10,7 @@ const validateLoginInput = require('../../validation/login');
 
 const Employer = require('../../models/Employer');
 
-router.get('/test', (req, res) => res.json({ msg: 'employer works' }));
+router.get('/test', (req, res) => res.json({ msg: 'Employers Works' }));
 
 router.post('/register', (req, res) => {
 	const { errors, isValid } = validateRegisterInput(req.body);
@@ -18,6 +18,7 @@ router.post('/register', (req, res) => {
 	if (!isValid) {
 		return res.status(400).json(errors);
 	}
+
 	Employer.findOne({ email: req.body.email }).then((employer) => {
 		if (employer) {
 			errors.email = 'Email already exists';
@@ -33,7 +34,7 @@ router.post('/register', (req, res) => {
 				bcrypt.hash(newEmployer.password, salt, (err, hash) => {
 					if (err) throw err;
 					newEmployer.password = hash;
-					newEmployer.save().then((user) => res.json(user)).catch((err) => console.log(err));
+					newEmployer.save().then((employer) => res.json(employer)).catch((err) => console.log(err));
 				});
 			});
 		}
@@ -55,6 +56,7 @@ router.post('/login', (req, res) => {
 			errors.email = 'Employer not found';
 			return res.status(404).json(errors);
 		}
+
 		bcrypt.compare(password, employer.password).then((isMatch) => {
 			if (isMatch) {
 				const payload = { id: employer.id, name: employer.name };

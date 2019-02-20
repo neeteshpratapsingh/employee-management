@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 class Landing extends Component {
 	componentDidMount() {
 		if (this.props.auth.isAuthenticated) {
-			this.props.history.push('/');
+			this.props.history.push('/dashboard');
 		}
 	}
 
@@ -17,12 +17,6 @@ class Landing extends Component {
 					<div className="container">
 						<div className="row">
 							<div className="col-md-12 text-center">
-								<h1 className="display-3 mb-4">Employer Profile</h1>
-								<p className="lead">
-									{' '}
-									Create a EMPLOYER profile, where Employer can share their basic Information
-								</p>
-								<hr />
 								<Link to="/register" className="btn btn-lg btn-info mr-2">
 									Sign Up
 								</Link>
