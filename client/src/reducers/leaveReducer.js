@@ -1,34 +1,34 @@
-import { GET_PROFILE, GET_PROFILES, PROFILE_LOADING, CLEAR_CURRENT_PROFILE } from '../employerActions/types';
+import { GET_LEAVE, GET_LEAVES, LEAVE_LOADING, CLEAR_CURRENT_LEAVE } from '../actions/types';
 
 const initialState = {
-	profile: null,
-	profiles: null,
+	leave: null,
+	leaves: null,
 	loading: false
 };
 
 export default function(state = initialState, action) {
 	switch (action.type) {
-		case PROFILE_LOADING:
+		case LEAVE_LOADING:
 			return {
 				...state,
 				loading: true
 			};
-		case GET_PROFILE:
+		case GET_LEAVE:
 			return {
 				...state,
-				profile: action.payload,
+				leave: action.payload,
 				loading: false
 			};
-		case GET_PROFILES:
+		case GET_LEAVES:
 			return {
 				...state,
-				profiles: action.payload,
+				leaves: action.payload,
 				loading: false
 			};
-		case CLEAR_CURRENT_PROFILE:
+		case CLEAR_CURRENT_LEAVE:
 			return {
 				...state,
-				profile: null
+				leave: null
 			};
 		default:
 			return state;

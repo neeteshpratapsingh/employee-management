@@ -2,34 +2,69 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ProfileSchema = new Schema({
-	employer: {
+	user: {
 		type: Schema.Types.ObjectId,
-		ref: 'employers'
+		ref: 'users'
 	},
-	handle: {
-		type: String,
-		required: true,
-		max: 40
-	},
-	company: {
+	currentbranch: {
 		type: String
 	},
-	website: {
+	department: {
 		type: String
 	},
-	location: {
+	designation: {
 		type: String
 	},
-	status: {
-		type: String,
-		required: true
+	salary: {
+		type: Number
 	},
-	skills: {
-		type: [ String ],
-		required: true
+	dateofjoining: {
+		type: Date
 	},
-	bio: {
+	dateofbirth: {
+		type: Date
+	},
+	gender: {
 		type: String
+	},
+	maritalstatus: {
+		type: String
+	},
+	bloodgroup: {
+		type: String
+	},
+
+	mobile: {
+		type: Number
+	},
+	nationality: {
+		type: String
+	},
+	address: {
+		type: String
+	},
+	clopening: {
+		type: Number
+	},
+	clavailed: {
+		type: Number
+	},
+	mlopening: {
+		type: Number
+	},
+	mlavailed: {
+		type: Number
+	},
+	absents: {
+		type: Number
+	},
+	remarks: {
+		type: String
+	},
+	date: {
+		type: Date,
+		default: Date.now
 	}
 });
+
 module.exports = Profile = mongoose.model('profile', ProfileSchema);

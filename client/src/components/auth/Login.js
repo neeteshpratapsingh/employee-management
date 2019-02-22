@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { loginEmployer } from '../../employerActions/authActions';
+
+import { loginUser } from '../../actions/authActions';
 import TextFieldGroup from '../common/TextFieldGroup';
 
 class Login extends Component {
@@ -12,6 +13,13 @@ class Login extends Component {
 			password: '',
 			errors: {}
 		};
+
+		this.onChange = this.onChange.bind(this);
+		this.onSubmit = this.onSubmit.bind(this);
+	}
+
+	onChange(e) {
+		this.setState({ [e.target.name]: e.target.value });
 	}
 
 	componentDidMount() {
@@ -29,21 +37,16 @@ class Login extends Component {
 			this.setState({ errors: nextProps.errors });
 		}
 	}
-
-	onSubmit = (e) => {
+	onSubmit(e) {
 		e.preventDefault();
 
-		const employerData = {
+		const userData = {
 			email: this.state.email,
 			password: this.state.password
 		};
 
-		this.props.loginEmployer(employerData);
-	};
-
-	onChange = (e) => {
-		this.setState({ [e.target.name]: e.target.value });
-	};
+		this.props.loginUser(userData);
+	}
 
 	render() {
 		const { errors } = this.state;
@@ -54,12 +57,12 @@ class Login extends Component {
 					<div className="row">
 						<div className="col-md-8 m-auto">
 							<h1 className="display-4 text-center">Log In</h1>
-							<p className="lead text-center">Sign in for Employer</p>
+							<p className="lead text-center"> Employee Management System</p>
 							<form onSubmit={this.onSubmit}>
 								<TextFieldGroup
-									placeholder="Email Address"
+									placeholder="email"
 									name="email"
-									type="email"
+									type="text"
 									value={this.state.email}
 									onChange={this.onChange}
 									error={errors.email}
@@ -84,7 +87,7 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-	loginEmployer: PropTypes.func.isRequired,
+	loginUser: PropTypes.func.isRequired,
 	auth: PropTypes.object.isRequired,
 	errors: PropTypes.object.isRequired
 };
@@ -93,5 +96,4 @@ const mapStateToProps = (state) => ({
 	auth: state.auth,
 	errors: state.errors
 });
-
-export default connect(mapStateToProps, { loginEmployer })(Login);
+export default connect(mapStateToProps, { loginUser })(Login);

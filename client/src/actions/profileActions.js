@@ -6,13 +6,13 @@ import {
 	PROFILE_LOADING,
 	CLEAR_CURRENT_PROFILE,
 	GET_ERRORS,
-	SET_CURRENT_EMPLOYER
+	SET_CURRENT_USER
 } from './types';
 
 export const getCurrentProfile = () => (dispatch) => {
 	dispatch(setProfileLoading());
 	axios
-		.get('/api/profile')
+		.get('/api/profile/current')
 		.then((res) =>
 			dispatch({
 				type: GET_PROFILE,
@@ -27,10 +27,10 @@ export const getCurrentProfile = () => (dispatch) => {
 		);
 };
 
-export const getProfileByHandle = (handle) => (dispatch) => {
+export const getProfileByHandle = (id) => (dispatch) => {
 	dispatch(setProfileLoading());
 	axios
-		.get(`/api/profile/handle/${handle}`)
+		.get(`/api/profile/id/${id}`)
 		.then((res) =>
 			dispatch({
 				type: GET_PROFILE,
@@ -46,12 +46,15 @@ export const getProfileByHandle = (handle) => (dispatch) => {
 };
 
 export const createProfile = (profileData, history) => (dispatch) => {
-	axios.post('/api/profile', profileData).then((res) => history.push('/dashboard')).catch((err) =>
-		dispatch({
-			type: GET_ERRORS,
-			payload: err.response.data
-		})
-	);
+	axios
+		.post('/api/profile/id/' + profileData.user, profileData)
+		.then((res) => history.push('/profiles'))
+		.catch((err) =>
+			dispatch({
+				type: GET_ERRORS,
+				payload: err.response.data
+			})
+		);
 };
 
 export const getProfiles = () => (dispatch) => {
@@ -78,7 +81,7 @@ export const deleteAccount = () => (dispatch) => {
 			.delete('/api/profile')
 			.then((res) =>
 				dispatch({
-					type: SET_CURRENT_EMPLOYER,
+					type: SET_CURRENT_USER,
 					payload: {}
 				})
 			)
