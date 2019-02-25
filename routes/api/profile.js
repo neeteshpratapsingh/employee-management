@@ -74,7 +74,7 @@ router.get(
 		Profile.findOne({
 			user: req.user.id
 		})
-			// .populate('user', [ 'name', 'email' ])
+			.populate('user', [ 'name', 'email' ])
 			.then((profile) => {
 				if (!profile) {
 					errors.noprofile = 'There is no profile for this user';
@@ -90,7 +90,7 @@ router.get('/all', (req, res) => {
 	const errors = {};
 
 	Profile.find()
-		.populate('user', [ 'name', 'email', '_id' ])
+		// .populate('user', [ 'name', 'email', '_id' ])
 		.then((profiles) => {
 			if (!profiles) {
 				errors.noprofile = 'There are no profiles';
@@ -112,7 +112,7 @@ router.get('/id/:user_id', (req, res) => {
 	Profile.findOne({
 		user: req.params.user_id
 	})
-		.populate('user', [ 'name', 'email' ])
+		// .populate('user', [ 'name', 'email' ])
 		.then((profile) => {
 			if (!profile) {
 				errors.noprofile = 'There is no profile for this user';

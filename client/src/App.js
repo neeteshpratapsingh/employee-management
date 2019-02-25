@@ -56,7 +56,7 @@ class App extends Component {
 								<PrivateRoute exact path="/leave/:id" component={EditLeave} />
 							</Switch>
 							<Switch>
-								<PrivateRoute exact path="/leaves" component={Leaves} />
+								<PrivateRoute exact path="/leave" component={Leaves} />
 							</Switch>
 						</div>
 						<Footer />

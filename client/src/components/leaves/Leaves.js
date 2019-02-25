@@ -7,7 +7,7 @@ import LeaveItem from './LeaveItem';
 
 class Profiles extends Component {
 	componentDidMount() {
-		this.props.getTransfers();
+		this.props.getLeaves();
 		if (!this.props.auth.isAuthenticated) {
 			this.props.history.push('/login');
 		}

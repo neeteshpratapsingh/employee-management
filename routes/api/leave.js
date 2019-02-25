@@ -47,12 +47,11 @@ router.get(
 	passport.authenticate('jwt', {
 		session: false
 	}),
-	(req, res) => {
-		leave
-			.findOne({
-				user: req.user.id
-			})
-			.populate('user', [ 'name', 'email', 'role' ])
+	async (req, res) => {
+		await Leave.findOne({
+			user: req.user.id
+		})
+			// .populate('user', [ 'name', 'email', 'role' ])
 			.then((leave) => {
 				console.log('leave');
 				if (!leave) {
@@ -69,8 +68,8 @@ router.get('/all', (req, res) => {
 	const errors = {};
 	console.log(errors);
 	Leave.find()
-		.populate('user', [ 'name', 'email' ])
-		.then((leave) => {
+		// .populate('user', [ 'name', 'email' ])
+		.then((leaves) => {
 			if (!leaves) {
 				errors.noleave = 'There are no leaves applied';
 				console.log(errors);
@@ -88,7 +87,7 @@ router.get('/id/:user_id', (req, res) => {
 	Leave.findOne({
 		user: req.params.user_id
 	})
-		.populate('user', [ 'name', 'email' ])
+		// .populate('user', [ 'name', 'email' ])
 		.then((leave) => {
 			if (!leave) {
 				errors.noprofile = 'There is no leave for this user';

@@ -202,7 +202,7 @@ class CreateProfile extends Component {
 											value={`${this.state.email}`}
 											onChange={this.onChange}
 											info="email of employee"
-											disabled="disabled"
+											enabled="enabled"
 										/>
 										<TextFieldGroup
 											placeholder="Name"
@@ -210,7 +210,7 @@ class CreateProfile extends Component {
 											value={`${this.state.name}`}
 											onChange={this.onChange}
 											info="Name of Employee"
-											disabled="disabled"
+											enabled="enabled"
 										/>
 										<SelectListGroup
 											placeholder="Current Branch"
@@ -341,7 +341,7 @@ class CreateProfile extends Component {
 															name="clclosing"
 															value={`${this.state.clopening - this.state.clavailed}`}
 															onChange={this.onChange}
-															disabled="disabled"
+															enabled="enabled"
 														/>
 													</td>
 												</tr>
@@ -376,7 +376,7 @@ class CreateProfile extends Component {
 														<TextFieldGroup
 															name="mlclosing"
 															value={`${this.state.mlopening - this.state.mlavailed}`}
-															disabled="disabled"
+															enabled="enabled"
 															onChange={this.onChange}
 														/>
 													</td>
@@ -391,7 +391,7 @@ class CreateProfile extends Component {
 											onChange={this.onChange}
 											error={errors.absents}
 											info="Total absent days"
-											disabled="disabled"
+											enabled="enabled"
 										/>
 										<TextAreaFieldGroup
 											placeholder="remarks"

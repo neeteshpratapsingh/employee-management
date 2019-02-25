@@ -9,6 +9,7 @@ import TextAreaFieldGroup from '../common/TextAreaFieldGroupDisplay';
 import { logoutUser } from '../../actions/authActions';
 import SelectListGroupDisplay from '../common/SelectListGroupDisplay';
 import isEmpty from '../../validations/is-empty';
+
 class Dashboard extends Component {
 	onLogoutClick(e) {
 		e.preventDefault();
@@ -113,7 +114,7 @@ class Dashboard extends Component {
 									value={`${user.email}`}
 									onChange={this.onChange}
 									info="email of employee"
-									enabled="enabled"
+									disabled="disabled"
 								/>
 								<TextFieldGroup
 									placeholder="Name"
@@ -130,7 +131,7 @@ class Dashboard extends Component {
 									onChange={this.onChange}
 									options={branchoptions}
 									info="Select Employee cadre"
-									enabled="enabled"
+									disabled="disabled"
 								/>
 								<SelectListGroupDisplay
 									placeholder="department"
@@ -139,7 +140,7 @@ class Dashboard extends Component {
 									onChange={this.onChange}
 									options={departmentoptions}
 									info="select Employee department"
-									enabled="enabled"
+									disabled="disabled"
 								/>
 								<SelectListGroupDisplay
 									placeholder="designation"
@@ -148,7 +149,7 @@ class Dashboard extends Component {
 									onChange={this.onChange}
 									options={designationoptions}
 									info="select Employee designation"
-									enabled="enabled"
+									disabled="disabled"
 								/>
 
 								<TextFieldGroup
@@ -157,7 +158,7 @@ class Dashboard extends Component {
 									value={`${profile.salary}`}
 									onChange={this.onChange}
 									info="Enter Employee Salary"
-									enabled="enabled"
+									disabled="disabled"
 								/>
 								<p>Date of Joining</p>
 								<input
@@ -165,7 +166,7 @@ class Dashboard extends Component {
 									name="dateofjoining"
 									value={formatDate(profile.dateofjoining)}
 									onChange={this.onChange}
-									enabled="enabled"
+									disabled="disabled"
 								/>
 								<br />
 								<br />
@@ -176,7 +177,7 @@ class Dashboard extends Component {
 									name="dateofbirth"
 									value={formatDate(profile.dateofbirth)}
 									onChange={this.onChange}
-									enabled="enabled"
+									disabled="disabled"
 								/>
 								<br />
 								<br />
@@ -187,7 +188,7 @@ class Dashboard extends Component {
 									onChange={this.onChange}
 									options={genderoptions}
 									info="select Employee Gender"
-									enabled="enabled"
+									disabled="disabled"
 								/>
 								<SelectListGroupDisplay
 									placeholder="Marital Status"
@@ -196,7 +197,7 @@ class Dashboard extends Component {
 									onChange={this.onChange}
 									options={maritalstatusoptions}
 									info="select Employee Marital Status"
-									enabled="enabled"
+									disabled="disabled"
 								/>
 							</div>
 							<div className="col">
@@ -206,7 +207,7 @@ class Dashboard extends Component {
 									value={`${profile.bloodgroup}`}
 									onChange={this.onChange}
 									info="Enter Employee Blood Group"
-									enabled="enabled"
+									disabled="disabled"
 								/>
 								<TextFieldGroup
 									placeholder="Mobile Number"
@@ -214,7 +215,7 @@ class Dashboard extends Component {
 									value={`${profile.mobile}`}
 									onChange={this.onChange}
 									info="Enter Employee Mobile Number"
-									enabled="enabled"
+									disabled="disabled"
 								/>
 								<TextAreaFieldGroup
 									placeholder="Address"
@@ -222,7 +223,7 @@ class Dashboard extends Component {
 									value={profile.address}
 									onChange={this.onChange}
 									info="Enter the Employee Address"
-									enabled="enabled"
+									disabled="disabled"
 								/>
 								<h2>CASUAL LEAVE</h2>
 								<table className="table table-striped">
@@ -315,7 +316,7 @@ class Dashboard extends Component {
 									value={profile.remarks}
 									onChange={this.onChange}
 									info="Enter the Employee Remarks if any"
-									enabled="enabled"
+									disabled="disabled"
 								/>
 							</div>
 						</div>

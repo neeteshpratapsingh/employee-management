@@ -46,6 +46,7 @@ export const createLeave = (leaveData, history) => (dispatch) => {
 		})
 	);
 };
+
 export const getLeaves = () => (dispatch) => {
 	dispatch(setLeaveLoading());
 	axios

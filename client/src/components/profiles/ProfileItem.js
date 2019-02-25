@@ -19,7 +19,7 @@ class ProfileItem extends Component {
 				<td>
 					{' '}
 					<Link to={`/profile/edit/${profile.user._id}`} className="btn btn-info">
-						Manage Profile
+						Edit Profile
 					</Link>
 				</td>
 				<td>

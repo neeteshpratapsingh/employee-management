@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
+const randomstring = require('randomstring');
 
 const key = require('../../config/keys').secretOrKey;
 

@@ -135,7 +135,7 @@ class CreateLeave extends Component {
 				<div className="container">
 					<div className="row">
 						<div className="col-md-8 m-auto">
-							<Link to="/leaves" className="btn btn-light">
+							<Link to="/leave" className="btn btn-light">
 								Go Back
 							</Link>
 							<h1 className="display-4 text-center">Create Leave Request</h1>
@@ -146,7 +146,7 @@ class CreateLeave extends Component {
 									value={`${this.state.email}`}
 									onChange={this.onChange}
 									info="email of employee"
-									disabled="disabled"
+									enabled="enabled"
 									error={errors.email}
 								/>
 								<TextFieldGroup
@@ -155,7 +155,7 @@ class CreateLeave extends Component {
 									value={`${this.state.name}`}
 									onChange={this.onChange}
 									info="Name of Employee"
-									disabled="disabled"
+									enabled="enabled"
 								/>
 
 								<SelectListGroup
@@ -195,7 +195,7 @@ class CreateLeave extends Component {
 											value={`${filterleaves(this.state.branch1) + 1}`}
 											onChange={this.onChange}
 											info={`Your Application in ${this.state.branch1} Branch `}
-											disabled="disabled"
+											enabled="enabled"
 										/>
 									</div>
 								</div>
@@ -220,7 +220,7 @@ class CreateLeave extends Component {
 											value={`${filterleaves(this.state.branch2) + 1}`}
 											onChange={this.onChange}
 											info={`Your Application in ${this.state.branch2} Branch `}
-											disabled="disabled"
+											enabled="enabled"
 										/>
 									</div>
 								</div>
@@ -244,7 +244,7 @@ class CreateLeave extends Component {
 											value={`${filterleaves(this.state.branch3) + 1}`}
 											onChange={this.onChange}
 											info={`Your Application in ${this.state.branch3} Branch `}
-											disabled="disabled"
+											enabled="enabled"
 										/>
 									</div>
 								</div>
