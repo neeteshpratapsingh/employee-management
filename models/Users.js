@@ -18,7 +18,11 @@ const UserSchema = new Schema({
 	},
 	role: {
 		type: String,
-		default: 'employee'
+		default: 'admin'
+	},
+	confirmed: {
+		type: Boolean,
+		default: false
 	},
 	Date: {
 		type: Date,

@@ -3,7 +3,6 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
-const randomstring = require('randomstring');
 
 const key = require('../../config/keys').secretOrKey;
 
@@ -26,6 +25,7 @@ router.post('/register', (req, res) => {
 	const name = req.body.name;
 	const email = req.body.email;
 	const password = req.body.password;
+	const role = req.body.position;
 
 	User.findOne({
 		email: email
@@ -37,7 +37,8 @@ router.post('/register', (req, res) => {
 			const NewUser = new User({
 				name,
 				email,
-				password
+				password,
+				role
 			});
 
 			bcrypt.genSalt(10, (err, salt) => {

@@ -18,17 +18,17 @@ class Navbar extends Component {
 			<ul className="navbar-nav ml-auto">
 				<li className="nav-item">
 					<Link className="nav-link" to="/register">
-						Create Account
+						Employer Profile
 					</Link>
 				</li>
 				<li className="nav-item">
 					<Link className="nav-link" to="/profiles">
 						{' '}
-						Employees
+						Employees Profiles
 					</Link>
 				</li>
 				<li className="nav-item">
-					<Link className="nav-link" to="/leaves">
+					<Link className="nav-link" to="/leave">
 						Leaves
 					</Link>
 				</li>

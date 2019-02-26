@@ -12,6 +12,7 @@ class Register extends Component {
 			name: '',
 			email: '',
 			password: '',
+			position: '',
 			errors: {}
 		};
 
@@ -41,7 +42,8 @@ class Register extends Component {
 		const newUser = {
 			name: this.state.name,
 			email: this.state.email,
-			password: this.state.password
+			password: this.state.password,
+			position: this.state.position
 		};
 		console.log(newUser);
 
@@ -87,6 +89,20 @@ class Register extends Component {
 									error={errors.password}
 									icon="fas fa-key"
 								/>
+								<select
+									placeholder="Position"
+									name="position"
+									type="position"
+									value={this.state.position}
+									onChange={this.onChange}
+									error={errors.position}
+									icon="fas fa-key"
+								>
+									<option>Select Position</option>
+									<option value="admin"> Employer </option>
+									<option value="employee"> Employee </option>{' '}
+								</select>
+
 								<input type="submit" className="btn btn-info btn-block mt-4" />
 							</form>
 						</div>

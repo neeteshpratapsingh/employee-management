@@ -74,7 +74,7 @@ router.get(
 		Profile.findOne({
 			user: req.user.id
 		})
-			.populate('user', [ 'name', 'email' ])
+			// .populate('user', [ 'name', 'email' ])
 			.then((profile) => {
 				if (!profile) {
 					errors.noprofile = 'There is no profile for this user';
