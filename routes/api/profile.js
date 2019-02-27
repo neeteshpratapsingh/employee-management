@@ -9,7 +9,7 @@ const Profile = require('../../models/Profile');
 const User = require('../../models/Users');
 
 router.post(
-	'/id/:user_id',
+	'/id/:users_id',
 	passport.authenticate('jwt', {
 		session: false
 	}),
@@ -74,13 +74,14 @@ router.get(
 		Profile.findOne({
 			user: req.user.id
 		})
-			// .populate('user', [ 'name', 'email' ])
+			.populate('users', [ 'name', 'email' ])
 			.then((profile) => {
 				if (!profile) {
 					errors.noprofile = 'There is no profile for this user';
 					return res.status(404).json(errors);
 				}
 				res.json(profile);
+				console.log(profile);
 			})
 			.catch((err) => res.status(404).json(err));
 	}
@@ -90,7 +91,7 @@ router.get('/all', (req, res) => {
 	const errors = {};
 
 	Profile.find()
-		// .populate('user', [ 'name', 'email', '_id' ])
+		.populate('users', [ 'name', 'email', '_id' ])
 		.then((profiles) => {
 			if (!profiles) {
 				errors.noprofile = 'There are no profiles';
@@ -106,13 +107,13 @@ router.get('/all', (req, res) => {
 		);
 });
 
-router.get('/id/:user_id', (req, res) => {
+router.get('/id/:users_id', (req, res) => {
 	const errors = {};
 
 	Profile.findOne({
 		user: req.params.user_id
 	})
-		// .populate('user', [ 'name', 'email' ])
+		.populate('users', [ 'name', 'email' ])
 		.then((profile) => {
 			if (!profile) {
 				errors.noprofile = 'There is no profile for this user';
@@ -125,7 +126,7 @@ router.get('/id/:user_id', (req, res) => {
 });
 
 router.delete(
-	'/id/:user_id',
+	'/id/:users_id',
 	passport.authenticate('jwt', {
 		session: false
 	}),

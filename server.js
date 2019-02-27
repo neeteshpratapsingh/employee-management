@@ -5,8 +5,6 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const passport = require('passport');
 const cors = require('cors');
-// const emailController = require('./email/email.controller');
-// const { CLIENT_ORIGIN } = require('./config');
 
 const users = require('./routes/api/users');
 const profile = require('./routes/api/profile');
@@ -17,15 +15,6 @@ const db = mongoose.connection;
 
 const app = express();
 app.use(cors());
-// app.use(
-// 	cors({
-// 		origin: CLIENT_ORIGIN
-// 	})
-// );
-
-// app.post('/email', emailController.collectEmail);
-
-// app.get('/email/confirm/:id', emailController.confirmEmail);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

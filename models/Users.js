@@ -20,9 +20,15 @@ const UserSchema = new Schema({
 		type: String,
 		default: 'admin'
 	},
-	confirmed: {
+	isVerified: {
 		type: Boolean,
 		default: false
+	},
+	passwordResetToken: {
+		type: String
+	},
+	passwordResetExpires: {
+		type: String
 	},
 	Date: {
 		type: Date,
@@ -30,4 +36,4 @@ const UserSchema = new Schema({
 	}
 });
 
-module.exports = User = mongoose.model('User', UserSchema);
+module.exports = Users = mongoose.model('Users', UserSchema);

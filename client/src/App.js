@@ -68,18 +68,3 @@ class App extends Component {
 }
 
 export default App;
-
-// import React, { Component } from 'react';
-// import Landing from './components/Landing';
-// import Confirm from './components/Confirm';
-// import { API_URL } from '../../config';
-
-// return (
-// 	<BrowserRouter>
-// 		<Switch>
-// 			<Route exact path="/confirm/:id" component={Confirm} />
-// 			<Route exact path="/" component={Landing} />
-// 			<Redirect from="*" to="/" />
-// 		</Switch>
-// 	</BrowserRouter>
-// );
