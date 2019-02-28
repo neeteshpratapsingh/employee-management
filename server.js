@@ -9,6 +9,7 @@ const cors = require('cors');
 const users = require('./routes/api/users');
 const profile = require('./routes/api/profile');
 const leave = require('./routes/api/leave');
+const posts = require('./routes/api/posts');
 
 mongoose.connect('mongodb://localhost:27017/employee', { useNewUrlParser: true });
 const db = mongoose.connection;
@@ -28,6 +29,7 @@ require('./config/passport')(passport);
 app.use('/api/user', users);
 app.use('/api/profile', profile);
 app.use('/api/leave', leave);
+app.use('/api/posts', posts);
 
 const port = process.env.port || 6000;
 

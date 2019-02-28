@@ -27,6 +27,12 @@ class Navbar extends Component {
 						Employees Profiles
 					</Link>
 				</li>
+
+				<li className="nav-item">
+					<Link className="nav-link" to="/feed">
+						Post Feed
+					</Link>
+				</li>
 				<li className="nav-item">
 					<Link className="nav-link" to="/leave">
 						Leaves
