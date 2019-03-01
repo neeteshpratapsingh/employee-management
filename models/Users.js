@@ -20,15 +20,13 @@ const UserSchema = new Schema({
 		type: String,
 		default: 'admin'
 	},
-	isVerified: {
-		type: Boolean,
+	confirmed: {
+		type: String,
 		default: false
 	},
-	passwordResetToken: {
-		type: String
-	},
-	passwordResetExpires: {
-		type: String
+	isAdmin: {
+		type: Boolean,
+		default: false
 	},
 	Date: {
 		type: Date,
