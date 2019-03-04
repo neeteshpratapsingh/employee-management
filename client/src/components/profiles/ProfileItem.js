@@ -7,6 +7,8 @@ class ProfileItem extends Component {
 		const { profile } = this.props;
 		const { serial } = this.props;
 
+		console.log(profile);
+
 		return (
 			<tr>
 				<th>{serial}</th>

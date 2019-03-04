@@ -12,10 +12,11 @@ import PrivateRoute from './components/common/PrivateRoute';
 import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import Footer from './components/layout/Footer';
-import Login from './components/auth/Login';
 import Register from './components/auth/Register';
+import Login from './components/auth/Login';
 import Dashboard from './components/dashboard/Dashboard';
 import Profiles from './components/profiles/Profiles';
+import CreateProfile from './components/create-profile/CreateProfile';
 import EditProfile from './components/edit-profile/EditProfile';
 import Posts from './components/posts/Posts';
 import Post from './components/post/Post';
@@ -52,7 +53,11 @@ class App extends Component {
 							<Route exact path="/profiles" component={Profiles} />
 
 							<Switch>
-								<PrivateRoute exact path="/profile/edit/:id" component={EditProfile} />
+								<PrivateRoute exact path="/create-profile" component={CreateProfile} />
+							</Switch>
+
+							<Switch>
+								<PrivateRoute exact path="/edit-profile" component={EditProfile} />
 							</Switch>
 
 							<Switch>

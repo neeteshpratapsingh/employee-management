@@ -6,6 +6,11 @@ const ProfileSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'users'
 	},
+	handle: {
+		type: String,
+		required: true,
+		max: 40
+	},
 	currentbranch: {
 		type: String
 	},
@@ -33,12 +38,8 @@ const ProfileSchema = new Schema({
 	bloodgroup: {
 		type: String
 	},
-
 	mobile: {
 		type: Number
-	},
-	nationality: {
-		type: String
 	},
 	address: {
 		type: String

@@ -24,25 +24,11 @@ class CreateProfile extends Component {
 			bloodgroup: '',
 			mobile: '',
 			address: '',
-			nationality: '',
-			clopening: '',
-			clavailed: '',
-			mlopening: '',
-			mlavailed: '',
-			absents: '',
-			remarks: '',
 			errors: {}
 		};
 
 		this.onChange = this.onChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
-	}
-
-	componentDidMount() {
-		this.props.getProfileByHandle(this.props.match.params.id);
-		if (!this.props.auth.isAuthenticated) {
-			this.props.history.push('/login');
-		}
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -64,15 +50,6 @@ class CreateProfile extends Component {
 			profile.bloodgroup = !isEmpty(profile.bloodgroup) ? profile.bloodgroup : '';
 			profile.address = !isEmpty(profile.address) ? profile.address : '';
 			profile.mobile = !isEmpty(profile.mobile) ? profile.mobile : '';
-			profile.nationality = !isEmpty(profile.nationality) ? profile.nationality : '';
-			profile.clopening = !isEmpty(profile.clopening) ? profile.clopening : '';
-			profile.clavailed = !isEmpty(profile.clavailed) ? profile.clavailed : '';
-			profile.mlopening = !isEmpty(profile.mlopening) ? profile.mlopening : '';
-
-			profile.mlavailed = !isEmpty(profile.mlavailed) ? profile.mlavailed : '';
-
-			profile.absents = !isEmpty(profile.absents) ? profile.absents : '';
-			profile.remarks = !isEmpty(profile.remarks) ? profile.remarks : '';
 
 			const formatDate = (date) => {
 				var MyDate = new Date(date);
@@ -88,7 +65,6 @@ class CreateProfile extends Component {
 			};
 
 			this.setState({
-				user: this.props.match.params.id,
 				name: profile.user.name,
 				email: profile.user.email,
 				currentbranch: profile.currentbranch,
@@ -101,14 +77,7 @@ class CreateProfile extends Component {
 				maritalstatus: profile.maritalstatus,
 				bloodgroup: profile.bloodgroup,
 				mobile: profile.mobile,
-				address: profile.address,
-				nationality: profile.nationality,
-				clopening: profile.clopening,
-				clavailed: profile.clavailed,
-				mlopening: profile.mlopening,
-				mlavailed: profile.mlavailed,
-				absents: profile.absents,
-				remarks: profile.remarks
+				address: profile.address
 			});
 		}
 	}
@@ -117,7 +86,6 @@ class CreateProfile extends Component {
 		e.preventDefault();
 
 		const profileData = {
-			user: this.state.user,
 			currentbranch: this.state.currentbranch,
 			department: this.state.department,
 			designation: this.state.designation,
@@ -128,16 +96,7 @@ class CreateProfile extends Component {
 			maritalstatus: this.state.maritalstatus,
 			bloodgroup: this.state.bloodgroup,
 			mobile: this.state.mobile,
-			address: this.state.address,
-			nationality: this.state.nationality,
-			clopening: this.state.clopening,
-			clavailed: this.state.clavailed,
-			clclosing: this.state.clclosing,
-			mlopening: this.state.mlopening,
-			mlavailed: this.state.mlavailed,
-			mlclosing: this.state.mlclosing,
-			absents: this.state.absents,
-			remarks: this.state.remarks
+			address: this.state.address
 		};
 
 		this.props.createProfile(profileData, this.props.history);
@@ -196,22 +155,6 @@ class CreateProfile extends Component {
 							<form onSubmit={this.onSubmit}>
 								<div className="row">
 									<div className="col">
-										<TextFieldGroup
-											placeholder="email"
-											name="email"
-											value={`${this.state.email}`}
-											onChange={this.onChange}
-											info="email of employee"
-											enabled="enabled"
-										/>
-										<TextFieldGroup
-											placeholder="Name"
-											name="name"
-											value={`${this.state.name}`}
-											onChange={this.onChange}
-											info="Name of Employee"
-											enabled="enabled"
-										/>
 										<SelectListGroup
 											placeholder="Current Branch"
 											name="currentbranch"
@@ -310,96 +253,6 @@ class CreateProfile extends Component {
 											onChange={this.onChange}
 											error={errors.address}
 											info="Enter the Employee Address"
-										/>
-										<h2>CASUAL LEAVE</h2>
-										<table className="table table-striped">
-											<thead>
-												<tr>
-													<th scope="col">Opening</th>
-													<th scope="col">Availed</th>
-													<th scope="col">Closing</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<th scope="row">
-														<TextFieldGroup
-															name="clopening"
-															value={`${this.state.clopening}`}
-															onChange={this.onChange}
-														/>
-													</th>
-													<td>
-														<TextFieldGroup
-															name="clavailed"
-															value={`${this.state.clavailed}`}
-															onChange={this.onChange}
-														/>
-													</td>
-													<td>
-														<TextFieldGroup
-															name="clclosing"
-															value={`${this.state.clopening - this.state.clavailed}`}
-															onChange={this.onChange}
-															enabled="enabled"
-														/>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-										<h2>MEDICAL LEAVE</h2>
-										<table className="table table-striped">
-											<thead>
-												<tr>
-													<th scope="col">Opening</th>
-													<th scope="col">Availed</th>
-													<th scope="col">Closing</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<th scope="row">
-														<TextFieldGroup
-															name="mlopening"
-															value={`${this.state.mlopening}`}
-															onChange={this.onChange}
-														/>
-													</th>
-													<td>
-														<TextFieldGroup
-															name="mlavailed"
-															value={`${this.state.mlavailed}`}
-															onChange={this.onChange}
-														/>
-													</td>
-													<td>
-														<TextFieldGroup
-															name="mlclosing"
-															value={`${this.state.mlopening - this.state.mlavailed}`}
-															enabled="enabled"
-															onChange={this.onChange}
-														/>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-
-										<TextFieldGroup
-											placeholder="Total Absent days"
-											name="absents"
-											value={`${this.state.clavailed + this.state.mlavailed}`}
-											onChange={this.onChange}
-											error={errors.absents}
-											info="Total absent days"
-											enabled="enabled"
-										/>
-										<TextAreaFieldGroup
-											placeholder="remarks"
-											name="remarks"
-											value={this.state.remarks}
-											onChange={this.onChange}
-											error={errors.remarks}
-											info="Enter the Employee Remarks if any"
 										/>
 
 										<input type="submit" value="Submit" className="btn btn-info btn-block mt-4" />

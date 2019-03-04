@@ -44,6 +44,16 @@ class Navbar extends Component {
 					</Link>
 				</li>
 				<li className="nav-item">
+					<Link className="nav-link" to="/create-profile">
+						Create Profile
+					</Link>
+				</li>
+				<li className="nav-item">
+					<Link className="nav-link" to="/edit-profile">
+						Edit Profile
+					</Link>
+				</li>
+				<li className="nav-item">
 					<a href="" onClick={this.onLogoutClick.bind(this)} className="nav-link">
 						Logout
 					</a>
@@ -93,7 +103,7 @@ class Navbar extends Component {
 		);
 
 		return (
-			<nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
+			<nav className="navbar navbar-sm navbar-dark bg-dark mb-4">
 				<div className="container">
 					<Link className="navbar-brand" to="/">
 						Employee Management System
