@@ -35,20 +35,23 @@ class Profiles extends Component {
 				<div className="container">
 					<div className="row">
 						<div className="col-md-12">
-							<h1 className="display-4 text-center">Employees Profiles</h1>
+							<h1 className="display-6 text-center">Employees Profiles</h1>
 							<p className="lead text-center">List of employee details</p>
 							{spinners}
 							<table className="table">
 								<thead className="thead-dark">
 									<tr>
 										<th scope="col">S.No</th>
-										<th scope="col">E-Mail</th>
-										<th scope="col">Name</th>
+										{/* <th scope="col">E-Mail</th>
+										<th scope="col">Name</th> */}
 										<th scope="col">Current Branch</th>
+										<th scope="col">Department</th>
 										<th scope="col">Designation</th>
+										<th scope="col">Salary</th>
+										<th scope="col">Address</th>
+										<th scope="col">Gender</th>
+										<th scope="col">Marital status</th>
 										<th scope="col">Phone Number</th>
-										<th scope="col" />
-										<th scope="col" />
 									</tr>
 								</thead>
 								<tbody>{profileItems}</tbody>

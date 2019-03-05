@@ -51,7 +51,7 @@ router.get(
 		await Leave.findOne({
 			user: req.user.id
 		})
-			// .populate('user', [ 'name', 'email', 'role' ])
+			.populate('user', [ 'name', 'email', 'role' ])
 			.then((leave) => {
 				console.log('leave');
 				if (!leave) {
@@ -68,7 +68,7 @@ router.get('/all', (req, res) => {
 	const errors = {};
 	console.log(errors);
 	Leave.find()
-		// .populate('user', [ 'name', 'email' ])
+		.populate('user', [ 'name', 'email' ])
 		.then((leaves) => {
 			if (!leaves) {
 				errors.noleave = 'There are no leaves applied';
@@ -87,7 +87,7 @@ router.get('/id/:user_id', (req, res) => {
 	Leave.findOne({
 		user: req.params.user_id
 	})
-		// .populate('user', [ 'name', 'email' ])
+		.populate('user', [ 'name', 'email' ])
 		.then((leave) => {
 			if (!leave) {
 				errors.noprofile = 'There is no leave for this user';

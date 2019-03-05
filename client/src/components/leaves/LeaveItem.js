@@ -5,7 +5,7 @@ class LeaveItem extends Component {
 	render() {
 		const { leaves } = this.props;
 		const { serial } = this.props;
-
+		console.log('leave', leaves);
 		const formatDate = (date) => {
 			var MyDate = new Date(date);
 			var MyDateString;
@@ -22,8 +22,8 @@ class LeaveItem extends Component {
 		return (
 			<tr>
 				<th>{serial}</th>
-				<th scope="row">{leaves.user.email}</th>
-				<td>{leaves.user.name}</td>
+				{/* <th scope="row">{leaves.user.email}</th> */}
+				{/* <td>{leaves.user.name}</td> */}
 				<td>{leaves.designation}</td>
 				<td>{leaves.department}</td>
 				<td>{leaves.branch1}</td>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 class ProfileItem extends Component {
 	render() {
@@ -12,13 +12,18 @@ class ProfileItem extends Component {
 		return (
 			<tr>
 				<th>{serial}</th>
-				<th scope="row">{profile.user.email}</th>
-				<td>{profile.user.name}</td>
+				{/* <th scope="row">{profile.user.email}</th>
+				<td>{profile.user.name}</td> */}
 				<td>{profile.currentbranch}</td>
+				<td>{profile.department}</td>
 				<td>{profile.designation}</td>
+				<td>{profile.salary}</td>
+				<td>{profile.address}</td>
+				<td>{profile.gender}</td>
+				<td>{profile.maritalstatus}</td>
 				<td>{profile.mobile}</td>
 
-				<td>
+				{/* <td>
 					{' '}
 					<Link to={`/profile/edit/${profile.user._id}`} className="btn btn-info">
 						Edit Profile
@@ -29,7 +34,7 @@ class ProfileItem extends Component {
 					<Link to={`/leave/${profile.user._id}`} className="btn btn-info">
 						Apply Leave
 					</Link>
-				</td>
+				</td> */}
 			</tr>
 		);
 	}

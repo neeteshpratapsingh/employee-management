@@ -50,10 +50,13 @@ class App extends Component {
 							<Route exact path="/login" component={Login} />
 							<Route exact path="/register" component={Register} />
 							<Route exact path="/dashboard" component={Dashboard} />
-							<Route exact path="/profiles" component={Profiles} />
+							{/* <Route exact path="/profiles" component={Profiles} /> */}
 
 							<Switch>
 								<PrivateRoute exact path="/create-profile" component={CreateProfile} />
+							</Switch>
+							<Switch>
+								<PrivateRoute exact path="/profiles" component={Profiles} />
 							</Switch>
 
 							<Switch>
@@ -71,6 +74,11 @@ class App extends Component {
 							<Switch>
 								<PrivateRoute exact path="/leave/:id" component={EditLeave} />
 							</Switch>
+
+							<Switch>
+								<PrivateRoute exact path="/profiles" component={EditLeave} />
+							</Switch>
+
 							<Switch>
 								<PrivateRoute exact path="/leave" component={Leaves} />
 							</Switch>

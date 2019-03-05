@@ -20,8 +20,8 @@ class CreateProfile extends Component {
 			gender: '',
 			maritalstatus: '',
 			dateofbirth: '',
-			dateofjoining: '',
-			bloodgroup: '',
+			// dateofjoining: '',
+			// bloodgroup: '',
 			mobile: '',
 			address: '',
 			errors: {}
@@ -46,8 +46,8 @@ class CreateProfile extends Component {
 			profile.gender = !isEmpty(profile.gender) ? profile.gender : '';
 			profile.maritalstatus = !isEmpty(profile.maritalstatus) ? profile.maritalstatus : '';
 			profile.dateofbirth = !isEmpty(profile.dateofbirth) ? profile.dateofbirth : '';
-			profile.dateofjoining = !isEmpty(profile.dateofjoining) ? profile.dateofjoining : '';
-			profile.bloodgroup = !isEmpty(profile.bloodgroup) ? profile.bloodgroup : '';
+			// profile.dateofjoining = !isEmpty(profile.dateofjoining) ? profile.dateofjoining : '';
+			// profile.bloodgroup = !isEmpty(profile.bloodgroup) ? profile.bloodgroup : '';
 			profile.address = !isEmpty(profile.address) ? profile.address : '';
 			profile.mobile = !isEmpty(profile.mobile) ? profile.mobile : '';
 
@@ -65,17 +65,17 @@ class CreateProfile extends Component {
 			};
 
 			this.setState({
-				name: profile.user.name,
-				email: profile.user.email,
+				// name: profile.user.name,
+				// email: profile.user.email,
 				currentbranch: profile.currentbranch,
 				department: profile.department,
 				designation: profile.designation,
 				salary: profile.salary,
-				dateofjoining: formatDate(profile.dateofjoining),
+				// dateofjoining: formatDate(profile.dateofjoining),
 				dateofbirth: formatDate(profile.dateofbirth),
 				gender: profile.gender,
 				maritalstatus: profile.maritalstatus,
-				bloodgroup: profile.bloodgroup,
+				// bloodgroup: profile.bloodgroup,
 				mobile: profile.mobile,
 				address: profile.address
 			});
@@ -86,15 +86,16 @@ class CreateProfile extends Component {
 		e.preventDefault();
 
 		const profileData = {
+			// name: this.state.name,
 			currentbranch: this.state.currentbranch,
 			department: this.state.department,
 			designation: this.state.designation,
 			salary: this.state.salary,
-			dateofjoining: this.state.dateofjoining,
+			// dateofjoining: this.state.dateofjoining,
 			dateofbirth: this.state.dateofbirth,
 			gender: this.state.gender,
 			maritalstatus: this.state.maritalstatus,
-			bloodgroup: this.state.bloodgroup,
+			// bloodgroup: this.state.bloodgroup,
 			mobile: this.state.mobile,
 			address: this.state.address
 		};
@@ -155,6 +156,22 @@ class CreateProfile extends Component {
 							<form onSubmit={this.onSubmit}>
 								<div className="row">
 									<div className="col">
+										{/* <TextFieldGroup
+											placeholder="email"
+											name="email"
+											value={`${this.state.email}`}
+											onChange={this.onChange}
+											info="email of employee"
+											disabled="disabled"
+										/>
+										<TextFieldGroup
+											placeholder="Name"
+											name="name"
+											value={`${this.state.name}`}
+											onChange={this.onChange}
+											info="Name of Employee"
+											disabled="disabled"
+										/> */}
 										<SelectListGroup
 											placeholder="Current Branch"
 											name="currentbranch"
@@ -191,7 +208,7 @@ class CreateProfile extends Component {
 											error={errors.salary}
 											info="Enter Employee Salary"
 										/>
-										<p>Date of Joining</p>
+										{/* <p>Date of Joining</p>
 										<input
 											type="date"
 											name="dateofjoining"
@@ -199,7 +216,7 @@ class CreateProfile extends Component {
 											onChange={this.onChange}
 										/>
 										<br />
-										<br />
+										<br /> */}
 										<p>Date of Birth</p>
 
 										<input
@@ -228,16 +245,6 @@ class CreateProfile extends Component {
 											error={errors.maritalstatus}
 											info="select Employee Marital Status"
 										/>
-									</div>
-									<div className="col">
-										<TextFieldGroup
-											placeholder="Blood Group"
-											name="bloodgroup"
-											value={`${this.state.bloodgroup}`}
-											onChange={this.onChange}
-											error={errors.bloodgroup}
-											info="Enter Employee Blood Group"
-										/>
 										<TextFieldGroup
 											placeholder="Mobile Number"
 											name="mobile"
@@ -254,10 +261,20 @@ class CreateProfile extends Component {
 											error={errors.address}
 											info="Enter the Employee Address"
 										/>
-
-										<input type="submit" value="Submit" className="btn btn-info btn-block mt-4" />
 									</div>
+									{/* <div className="col">
+										<TextFieldGroup
+											placeholder="Blood Group"
+											name="bloodgroup"
+											value={`${this.state.bloodgroup}`}
+											onChange={this.onChange}
+											error={errors.bloodgroup}
+											info="Enter Employee Blood Group"
+										/> */}
+
+									<input type="submit" value="Submit" className="btn btn-info btn-block mt-4" />
 								</div>
+								{/* </div> */}
 							</form>
 						</div>
 					</div>

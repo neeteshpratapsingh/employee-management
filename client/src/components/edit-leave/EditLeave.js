@@ -13,6 +13,8 @@ class CreateLeave extends Component {
 		super(props);
 		this.state = {
 			user: this.props.match.params.id,
+			// name: '',
+			// email: '',
 			designation: '',
 			department: '',
 			branch1: '',
@@ -46,19 +48,21 @@ class CreateLeave extends Component {
 
 			this.setState({
 				user: this.props.match.params.id,
-				name: profile.user.name,
-				email: profile.user.email,
+				// name: profile.user.name,
+				// email: profile.user.email,
 				designation: profile.designation,
 				department: profile.department
 			});
 		}
 	}
 
-	onSubmit(e) {
-		e.preventDefault();
+	onSubmit = async (e) => {
+		// e.preventDefault();
 
 		const leaveData = {
 			user: this.state.user,
+			// name: this.state.name,
+			// email: this.state.email,
 			designation: this.state.designation,
 			department: this.state.department,
 			branch1: this.state.branch1,
@@ -66,8 +70,8 @@ class CreateLeave extends Component {
 			branch3: this.state.branch3
 		};
 
-		this.props.createLeave(leaveData, this.props.history);
-	}
+		await this.props.createLeave(leaveData, this.props.history);
+	};
 
 	onChange(e) {
 		this.setState({ [e.target.name]: e.target.value });
@@ -140,7 +144,7 @@ class CreateLeave extends Component {
 							</Link>
 							<h1 className="display-4 text-center">Create Leave Request</h1>
 							<form onSubmit={this.onSubmit}>
-								<TextFieldGroup
+								{/* <TextFieldGroup
 									placeholder="email"
 									name="email"
 									value={`${this.state.email}`}
@@ -156,7 +160,7 @@ class CreateLeave extends Component {
 									onChange={this.onChange}
 									info="Name of Employee"
 									enabled="enabled"
-								/>
+								/> */}
 
 								<SelectListGroup
 									placeholder="designation"

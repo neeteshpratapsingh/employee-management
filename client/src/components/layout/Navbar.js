@@ -35,7 +35,7 @@ class Navbar extends Component {
 				</li>
 				<li className="nav-item">
 					<Link className="nav-link" to="/leave">
-						Leaves
+						Applied Leaves
 					</Link>
 				</li>
 				<li className="nav-item">
