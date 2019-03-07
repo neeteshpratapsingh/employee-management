@@ -14,13 +14,13 @@ class Navbar extends Component {
 	render() {
 		const { isAuthenticated, isAdmin } = this.props.auth;
 
-		const adminLinks = (
+		const employeeLinks = (
 			<ul className="navbar-nav ml-auto">
-				<li className="nav-item">
+				{/* <li className="nav-item">
 					<Link className="nav-link" to="/register">
 						Employer Profile
 					</Link>
-				</li>
+				</li> */}
 				<li className="nav-item">
 					<Link className="nav-link" to="/profiles">
 						{' '}
@@ -35,17 +35,17 @@ class Navbar extends Component {
 				</li>
 				<li className="nav-item">
 					<Link className="nav-link" to="/leave">
+						Create Leave Request
+					</Link>
+				</li>
+				<li className="nav-item">
+					<Link className="nav-link" to="/Leaves">
 						Applied Leaves
 					</Link>
 				</li>
 				<li className="nav-item">
 					<Link className="nav-link" to="/dashboard">
 						Dashboard
-					</Link>
-				</li>
-				<li className="nav-item">
-					<Link className="nav-link" to="/create-profile">
-						Create Profile
 					</Link>
 				</li>
 				<li className="nav-item">
@@ -60,21 +60,16 @@ class Navbar extends Component {
 				</li>
 			</ul>
 		);
-		const employeeLinks = (
+		const employerLinks = (
 			<ul className="navbar-nav ml-auto">
-				<li className="nav-item">
-					<Link className="nav-link" to="/leave">
-						Leaves
-					</Link>
-				</li>
-				<li className="nav-item">
-					<Link className="nav-link" to="/profiles">
-						Profiles
-					</Link>
-				</li>
 				<li className="nav-item">
 					<Link className="nav-link" to="/dashboard">
 						Dashboard
+					</Link>
+				</li>
+				<li className="nav-item">
+					<Link className="nav-link" to="/leave">
+						Leave Request
 					</Link>
 				</li>
 				<li className="nav-item">
@@ -85,7 +80,7 @@ class Navbar extends Component {
 			</ul>
 		);
 
-		const authLinks = isAdmin ? adminLinks : employeeLinks;
+		const authLinks = isAdmin ? employeeLinks : employerLinks;
 
 		const guestLinks = (
 			<ul className="navbar-nav ml-auto">

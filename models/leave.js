@@ -6,6 +6,13 @@ const LeaveSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'users'
 	},
+	name: {
+		type: String
+	},
+	email: {
+		type: String
+	},
+
 	department: {
 		type: String
 	},

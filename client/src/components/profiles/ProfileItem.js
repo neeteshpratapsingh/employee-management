@@ -12,8 +12,10 @@ class ProfileItem extends Component {
 		return (
 			<tr>
 				<th>{serial}</th>
-				{/* <th scope="row">{profile.user.email}</th>
-				<td>{profile.user.name}</td> */}
+				<th scope="row">
+					<td>{profile.user.name}</td>{' '}
+				</th>
+				<td>{profile.user.email}</td>
 				<td>{profile.currentbranch}</td>
 				<td>{profile.department}</td>
 				<td>{profile.designation}</td>

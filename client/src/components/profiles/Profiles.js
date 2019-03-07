@@ -42,8 +42,8 @@ class Profiles extends Component {
 								<thead className="thead-dark">
 									<tr>
 										<th scope="col">S.No</th>
-										{/* <th scope="col">E-Mail</th>
-										<th scope="col">Name</th> */}
+										<th scope="col">Name</th>
+										<th scope="col">E-Mail</th>
 										<th scope="col">Current Branch</th>
 										<th scope="col">Department</th>
 										<th scope="col">Designation</th>

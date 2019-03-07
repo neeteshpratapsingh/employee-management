@@ -13,6 +13,8 @@ class CreateProfile extends Component {
 		super(props);
 		this.state = {
 			user: this.props.match.params.id,
+			email: '',
+			name: '',
 			currentbranch: '',
 			designation: '',
 			department: '',
@@ -20,8 +22,8 @@ class CreateProfile extends Component {
 			gender: '',
 			maritalstatus: '',
 			dateofbirth: '',
-			// dateofjoining: '',
-			// bloodgroup: '',
+			dateofjoining: '',
+			bloodgroup: '',
 			mobile: '',
 			address: '',
 			errors: {}
@@ -46,8 +48,8 @@ class CreateProfile extends Component {
 			profile.gender = !isEmpty(profile.gender) ? profile.gender : '';
 			profile.maritalstatus = !isEmpty(profile.maritalstatus) ? profile.maritalstatus : '';
 			profile.dateofbirth = !isEmpty(profile.dateofbirth) ? profile.dateofbirth : '';
-			// profile.dateofjoining = !isEmpty(profile.dateofjoining) ? profile.dateofjoining : '';
-			// profile.bloodgroup = !isEmpty(profile.bloodgroup) ? profile.bloodgroup : '';
+			profile.dateofjoining = !isEmpty(profile.dateofjoining) ? profile.dateofjoining : '';
+			profile.bloodgroup = !isEmpty(profile.bloodgroup) ? profile.bloodgroup : '';
 			profile.address = !isEmpty(profile.address) ? profile.address : '';
 			profile.mobile = !isEmpty(profile.mobile) ? profile.mobile : '';
 
@@ -65,17 +67,17 @@ class CreateProfile extends Component {
 			};
 
 			this.setState({
-				// name: profile.user.name,
-				// email: profile.user.email,
+				name: profile.user.name,
+				email: profile.user.email,
 				currentbranch: profile.currentbranch,
 				department: profile.department,
 				designation: profile.designation,
 				salary: profile.salary,
-				// dateofjoining: formatDate(profile.dateofjoining),
+				dateofjoining: formatDate(profile.dateofjoining),
 				dateofbirth: formatDate(profile.dateofbirth),
 				gender: profile.gender,
 				maritalstatus: profile.maritalstatus,
-				// bloodgroup: profile.bloodgroup,
+				bloodgroup: profile.bloodgroup,
 				mobile: profile.mobile,
 				address: profile.address
 			});
@@ -86,16 +88,17 @@ class CreateProfile extends Component {
 		e.preventDefault();
 
 		const profileData = {
-			// name: this.state.name,
+			name: this.state.name,
+			email: this.state.email,
 			currentbranch: this.state.currentbranch,
 			department: this.state.department,
 			designation: this.state.designation,
 			salary: this.state.salary,
-			// dateofjoining: this.state.dateofjoining,
+			dateofjoining: this.state.dateofjoining,
 			dateofbirth: this.state.dateofbirth,
 			gender: this.state.gender,
 			maritalstatus: this.state.maritalstatus,
-			// bloodgroup: this.state.bloodgroup,
+			bloodgroup: this.state.bloodgroup,
 			mobile: this.state.mobile,
 			address: this.state.address
 		};
@@ -111,14 +114,14 @@ class CreateProfile extends Component {
 		const { errors } = this.state;
 
 		const branchoptions = [
-			{ label: '* Select Branch', value: 0 },
+			{ label: ' Select Branch', value: 0 },
 			{ label: 'chennai', value: 'chennai' },
 			{ label: 'madurai', value: 'madurai' },
 			{ label: 'bangalore', value: 'bangalore' }
 		];
 
 		const designationoptions = [
-			{ label: '* Select Designation', value: 0 },
+			{ label: ' Select Designation', value: 0 },
 			{ label: 'CEO', value: 'CEO' },
 			{ label: 'Manager', value: 'Manager' },
 			{ label: 'Web Developer', value: 'Web Developer' },
@@ -126,20 +129,20 @@ class CreateProfile extends Component {
 		];
 
 		const departmentoptions = [
-			{ label: '* Select Department', value: 0 },
+			{ label: ' Select Department', value: 0 },
 			{ label: 'Management', value: 'Management' },
 			{ label: 'HR Department', value: 'HR Department' },
 			{ label: 'Development', value: 'Development' }
 		];
 
 		const genderoptions = [
-			{ label: '* Select Gender', value: 0 },
+			{ label: ' Select Gender', value: 0 },
 			{ label: 'Male', value: 'Male' },
 			{ label: 'Female', value: 'Female' }
 		];
 
 		const maritalstatusoptions = [
-			{ label: '* Select Marital Status', value: 0 },
+			{ label: 'Select Marital Status', value: 0 },
 			{ label: 'Married', value: 'Married' },
 			{ label: 'Single', value: 'Single' }
 		];
@@ -152,34 +155,23 @@ class CreateProfile extends Component {
 							<Link to="/profiles" className="btn btn-light">
 								Go Back
 							</Link>
-							<h1 className="display-4 text-center">Edit Profile</h1>
+							<h1 className="display-8 text-center">Edit Profile</h1>
 							<form onSubmit={this.onSubmit}>
 								<div className="row">
 									<div className="col">
-										{/* <TextFieldGroup
-											placeholder="email"
-											name="email"
-											value={`${this.state.email}`}
-											onChange={this.onChange}
-											info="email of employee"
-											disabled="disabled"
-										/>
 										<TextFieldGroup
 											placeholder="Name"
 											name="name"
 											value={`${this.state.name}`}
 											onChange={this.onChange}
 											info="Name of Employee"
-											disabled="disabled"
-										/> */}
-										<SelectListGroup
-											placeholder="Current Branch"
-											name="currentbranch"
-											value={this.state.currentbranch}
+										/>
+										<TextFieldGroup
+											placeholder="email"
+											name="email"
+											value={`${this.state.email}`}
 											onChange={this.onChange}
-											options={branchoptions}
-											error={errors.currentbranch}
-											info="Select Employee cadre"
+											info="email of employee"
 										/>
 										<SelectListGroup
 											placeholder="department"
@@ -199,7 +191,15 @@ class CreateProfile extends Component {
 											error={errors.designation}
 											info="select Employee designation"
 										/>
-
+										<SelectListGroup
+											placeholder="Current Branch"
+											name="currentbranch"
+											value={this.state.currentbranch}
+											onChange={this.onChange}
+											options={branchoptions}
+											error={errors.currentbranch}
+											info="Select Employee branch"
+										/>
 										<TextFieldGroup
 											placeholder="Salary"
 											name="salary"
@@ -208,7 +208,7 @@ class CreateProfile extends Component {
 											error={errors.salary}
 											info="Enter Employee Salary"
 										/>
-										{/* <p>Date of Joining</p>
+										<p>Date of Joining</p>
 										<input
 											type="date"
 											name="dateofjoining"
@@ -216,9 +216,8 @@ class CreateProfile extends Component {
 											onChange={this.onChange}
 										/>
 										<br />
-										<br /> */}
+										<br />
 										<p>Date of Birth</p>
-
 										<input
 											type="date"
 											name="dateofbirth"
@@ -261,8 +260,7 @@ class CreateProfile extends Component {
 											error={errors.address}
 											info="Enter the Employee Address"
 										/>
-									</div>
-									{/* <div className="col">
+
 										<TextFieldGroup
 											placeholder="Blood Group"
 											name="bloodgroup"
@@ -270,11 +268,10 @@ class CreateProfile extends Component {
 											onChange={this.onChange}
 											error={errors.bloodgroup}
 											info="Enter Employee Blood Group"
-										/> */}
-
-									<input type="submit" value="Submit" className="btn btn-info btn-block mt-4" />
+										/>
+										<input type="submit" value="Submit" className="btn btn-info btn-block mt-4" />
+									</div>
 								</div>
-								{/* </div> */}
 							</form>
 						</div>
 					</div>

@@ -113,14 +113,14 @@ class CreateLeave extends Component {
 		const { errors } = this.state;
 
 		const branchoptions = [
-			{ label: '* Select Branch', value: 0 },
+			{ label: ' Select Branch', value: 0 },
 			{ label: 'chennai', value: 'chennai' },
 			{ label: 'madurai', value: 'madurai' },
 			{ label: 'bangalore', value: 'bangalore' }
 		];
 
 		const designationoptions = [
-			{ label: '* Select Designation', value: 0 },
+			{ label: ' Select Designation', value: 0 },
 			{ label: 'CEO', value: 'CEO' },
 			{ label: 'Manager', value: 'Manager' },
 			{ label: 'Web Developer', value: 'Web Developer' },
@@ -128,7 +128,7 @@ class CreateLeave extends Component {
 		];
 
 		const departmentoptions = [
-			{ label: '* Select Department', value: 0 },
+			{ label: 'Select Department', value: 0 },
 			{ label: 'Management', value: 'Management' },
 			{ label: 'HR Department', value: 'HR Department' },
 			{ label: 'Development', value: 'Development' }

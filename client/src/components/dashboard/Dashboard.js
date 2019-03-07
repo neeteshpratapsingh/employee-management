@@ -33,14 +33,14 @@ class Dashboard extends Component {
 		const { profile, loading } = this.props.profile;
 		let dashboardContent;
 		const branchoptions = [
-			{ label: '* Select Branch', value: 0 },
+			{ label: ' Select Branch', value: 0 },
 			{ label: 'chennai', value: 'chennai' },
 			{ label: 'madurai', value: 'madurai' },
 			{ label: 'bangalore', value: 'bangalore' }
 		];
 
 		const designationoptions = [
-			{ label: '* Select Designation', value: 0 },
+			{ label: ' Select Designation', value: 0 },
 			{ label: 'CEO', value: 'CEO' },
 			{ label: 'Manager', value: 'Manager' },
 			{ label: 'Web Developer', value: 'Web Developer' },
@@ -48,20 +48,20 @@ class Dashboard extends Component {
 		];
 
 		const departmentoptions = [
-			{ label: '* Select Department', value: 0 },
+			{ label: 'Select Department', value: 0 },
 			{ label: 'Management', value: 'Management' },
 			{ label: 'HR Department', value: 'HR Department' },
 			{ label: 'Development', value: 'Development' }
 		];
 
 		const genderoptions = [
-			{ label: '* Select Gender', value: 0 },
+			{ label: 'Select Gender', value: 0 },
 			{ label: 'Male', value: 'Male' },
 			{ label: 'Female', value: 'Female' }
 		];
 
 		const maritalstatusoptions = [
-			{ label: '* Select Marital Status', value: 0 },
+			{ label: ' Select Marital Status', value: 0 },
 			{ label: 'Married', value: 'Married' },
 			{ label: 'Single', value: 'Single' }
 		];
