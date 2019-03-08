@@ -4,8 +4,6 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
 
-const company = require('../../models/Company');
-
 const key = require('../../config/keys').secretOrKey;
 
 const userRegisterInput = require('../../validation/register');
@@ -15,52 +13,6 @@ const userLoginInput = require('../../validation/login');
 const User = require('../../models/Users');
 
 require('../../config/passport')(passport);
-
-exports.findAll = (req, res) => {
-	User.find()
-		.then((users) => {
-			res.send(users);
-		})
-		.catch((err) => {
-			res.status(500).send({
-				message: err.message
-			});
-		});
-};
-
-exports.findByName = (req, res) => {
-	User.findOne({ name: req.params.userName }).populate('company').exec(function(err, user) {
-		if (err) {
-			if (err.kind === 'ObjectId') {
-				return res.status(404).send({
-					message: 'Users not found with given name ' + req.params.userName
-				});
-			}
-			return res.status(500).send({
-				message: 'Error retrieving Users with given Company Id ' + req.params.userName
-			});
-		}
-
-		res.send(product);
-	});
-};
-
-exports.findByCompanyId = (req, res) => {
-	User.find({ company: req.params.companyId }).exec(function(err, users) {
-		if (err) {
-			if (err.kind === 'ObjectId') {
-				return res.status(404).send({
-					message: 'Users not found with given Company Id ' + req.params.companyId
-				});
-			}
-			return res.status(500).send({
-				message: 'Error retrieving Users with given Company Id ' + req.params.companyId
-			});
-		}
-
-		res.send(products);
-	});
-};
 
 router.post('/register', (req, res) => {
 	console.log(req.body);
@@ -131,29 +83,6 @@ router.post('/register', (req, res) => {
 		}
 	});
 });
-
-// register: async (parent, args, { transporter, models, EMAIL_SECRET }) => {
-// 	const hashedPassword = await bcrypt.hash(args.password, 12);
-// 	const user = await models.User.create({
-// 		...args,
-// 		password: hashedPassword
-// 	});
-// };
-
-// jwt.sign(
-// 	{
-// 		user: _.pick(user, 'id')
-// 	},
-// 	(err, emailToken) => {
-// 		const url = `http://localhost:3000/confirmation/${emailToken}`;
-
-// 		transporter.sendMail({
-// 			to: req.body.email,
-// 			subject: 'Confirm Email',
-// 			html: `please click the email to confirm your email: <a href= "${url}">${url}</a>`
-// 		});
-// 	}
-// );
 
 router.post('/login', (req, res) => {
 	const { errors, isValid } = userLoginInput(req.body);

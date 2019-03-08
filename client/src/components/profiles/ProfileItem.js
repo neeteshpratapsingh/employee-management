@@ -12,10 +12,8 @@ class ProfileItem extends Component {
 		return (
 			<tr>
 				<th>{serial}</th>
-				<th scope="row">
-					<td>{profile.user.name}</td>{' '}
-				</th>
-				<td>{profile.user.email}</td>
+				<th scope="row">{/* <td>{profile.user.name}</td>{' '} */}</th>
+				{/* <td>{profile.user.email}</td> */}
 				<td>{profile.currentbranch}</td>
 				<td>{profile.department}</td>
 				<td>{profile.designation}</td>
@@ -24,19 +22,6 @@ class ProfileItem extends Component {
 				<td>{profile.gender}</td>
 				<td>{profile.maritalstatus}</td>
 				<td>{profile.mobile}</td>
-
-				{/* <td>
-					{' '}
-					<Link to={`/profile/edit/${profile.user._id}`} className="btn btn-info">
-						Edit Profile
-					</Link>
-				</td>
-				<td>
-					{' '}
-					<Link to={`/leave/${profile.user._id}`} className="btn btn-info">
-						Apply Leave
-					</Link>
-				</td> */}
 			</tr>
 		);
 	}

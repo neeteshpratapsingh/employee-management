@@ -22,8 +22,14 @@ class LeaveItem extends Component {
 		return (
 			<tr>
 				<th>{serial}</th>
-				{/* {<th scope="row">{leaves.user.email}</th>}
-				{<td>{leaves.user.name}</td>} */}
+				{<th scope="row">{leaves.email}</th>}
+				{<td>{leaves.name}</td>}
+				<td>{leaves.leavetype}</td>
+				<td>{leaves.fromdate}</td>
+				<td>{leaves.todate}</td>
+				<td>{leaves.applyto}</td>
+				<td>{leaves.reason}</td>
+				<td>{leaves.contactdetails}</td>
 				<td>{leaves.designation}</td>
 				<td>{leaves.department}</td>
 				<td>{leaves.branch1}</td>

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-// import Spinner from '../common/Spinner';
 import { getLeaves } from '../../actions/leaveActions';
 import LeaveItem from './LeaveItem';
 
@@ -18,7 +17,6 @@ class Profiles extends Component {
 		let leaveItems;
 		let spinners;
 		if (leaves === null || loading) {
-			// spinners = <Spinner />;
 		} else {
 			if (leaves.length > 0) {
 				let a = 0;
@@ -43,8 +41,14 @@ class Profiles extends Component {
 								<thead className="thead-dark">
 									<tr>
 										<th scope="col">S.No</th>
-										{/* {<th scope="col">Email</th>}
-										{<th scope="col">Name</th>} */}
+										{<th scope="col">Email</th>}
+										{<th scope="col">Name</th>}
+										<th scope="col">Leave Type</th>
+										<th scope="col">From Date</th>
+										<th scope="col">To Date</th>
+										<th scope="col"> Apply To </th>
+										<th scope="col"> Reason </th>
+										<th scope="col">Contact Details</th>
 										<th scope="col">Designation</th>
 										<th scope="col">Department</th>
 										<th scope="col">Branch 1</th>

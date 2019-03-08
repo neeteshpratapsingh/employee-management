@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import PostForm from './PostForm';
 import PostFeed from './PostFeed';
-import Spinner from '../common/Spinner';
 import { getPosts } from '../../actions/postActions';
 
 class Posts extends Component {
@@ -16,7 +15,6 @@ class Posts extends Component {
 		let postContent;
 
 		if (posts === null || loading) {
-			postContent = <Spinner />;
 		} else {
 			postContent = <PostFeed posts={posts} />;
 		}

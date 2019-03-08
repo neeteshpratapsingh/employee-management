@@ -12,11 +12,28 @@ const LeaveSchema = new Schema({
 	email: {
 		type: String
 	},
-
-	department: {
+	leavetype: {
+		type: String
+	},
+	fromdate: {
+		type: Date
+	},
+	todate: {
+		type: Date
+	},
+	applyto: {
+		type: String
+	},
+	reason: {
+		type: String
+	},
+	contactdetails: {
 		type: String
 	},
 	designation: {
+		type: String
+	},
+	department: {
 		type: String
 	},
 	branch1: {
