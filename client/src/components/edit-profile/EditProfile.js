@@ -41,6 +41,8 @@ class CreateProfile extends Component {
 		if (nextProps.profile.profile) {
 			const profile = nextProps.profile.profile;
 
+			profile.name = !isEmpty(profile.name) ? profile.name : '';
+			profile.email = !isEmpty(profile.email) ? profile.email : '';
 			profile.currentbranch = !isEmpty(profile.currentbranch) ? profile.currentbranch : '';
 			profile.designation = !isEmpty(profile.designation) ? profile.designation : '';
 			profile.department = !isEmpty(profile.department) ? profile.department : '';

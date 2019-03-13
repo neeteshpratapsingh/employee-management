@@ -1,4 +1,4 @@
-const Company = require('./Company');
+// const Company = require('./Company');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -9,25 +9,50 @@ const UserSchema = new Schema({
 	},
 	email: {
 		type: String,
-		required: true
+		unique: true
 	},
-
-	password: {
-		type: String,
-		required: true
-	},
-	role: {
-		type: String,
+	roles: {
+		type: 'String',
 		default: 'admin'
 	},
-	confirmed: {
-		type: String,
-		default: false
-	},
-	isAdmin: {
+	isVerified: {
 		type: Boolean,
 		default: false
 	},
+	password: {
+		type: String
+	},
+	passwordResetToken: {
+		type: String
+	},
+	passwordResetExpires: {
+		type: Date
+	},
+	// name: {
+	// 	type: String,
+	// 	required: true
+	// },
+	// email: {
+	// 	type: String,
+	// 	required: true
+	// },
+
+	// password: {
+	// 	type: String,
+	// 	required: true
+	// },
+	// role: {
+	// 	type: String,
+	// 	default: 'admin'
+	// },
+	// confirmed: {
+	// 	type: String,
+	// 	default: false
+	// },
+	// isAdmin: {
+	// 	type: Boolean,
+	// 	default: false
+	// },
 	Date: {
 		type: Date,
 		default: Date.now

@@ -22,12 +22,21 @@ class Navbar extends Component {
 					</Link>
 				</li> */}
 				<li className="nav-item">
+					<Link className="nav-link" to="/dashboard">
+						Dashboard
+					</Link>
+				</li>
+				<li className="nav-item">
 					<Link className="nav-link" to="/profiles">
 						{' '}
 						Employees Profiles
 					</Link>
 				</li>
-
+				<li className="nav-item">
+					<Link className="nav-link" to="/edit-profile">
+						Edit Profile
+					</Link>
+				</li>
 				<li className="nav-item">
 					<Link className="nav-link" to="/feed">
 						Post Feed
@@ -44,13 +53,8 @@ class Navbar extends Component {
 					</Link>
 				</li>
 				<li className="nav-item">
-					<Link className="nav-link" to="/dashboard">
-						Dashboard
-					</Link>
-				</li>
-				<li className="nav-item">
-					<Link className="nav-link" to="/edit-profile">
-						Edit Profile
+					<Link className="nav-link" to="/feedback">
+						Feedback/Suggestion
 					</Link>
 				</li>
 				<li className="nav-item">
