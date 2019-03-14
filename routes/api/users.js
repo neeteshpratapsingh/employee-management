@@ -17,76 +17,6 @@ const Token = require('../../models/Token');
 
 require('../../config/passport')(passport);
 
-// router.post('/register', (req, res) => {
-// 	console.log(req.body);
-// 	const { errors, isValid } = userRegisterInput(req.body);
-
-// 	if (!isValid) {
-// 		return res.status(400).json(errors);
-// 	}
-
-// 	const name = req.body.name;
-// 	const email = req.body.email;
-// 	const password = req.body.password;
-// 	const role = req.body.role;
-
-// 	User.findOne({
-// 		email: email
-// 	}).then((user) => {
-// 		if (user) {
-// 			errors.email = 'User Already exist';
-// 			res.status(404).json(errors);
-// 		} else {
-// 			const NewUser = new User({
-// 				name,
-// 				email,
-// 				password,
-// 				role
-// 			});
-
-// 			bcrypt.genSalt(10, (err, salt) => {
-// 				bcrypt.hash(password, salt, (err, hash) => {
-// 					if (err) {
-// 						console.log(err);
-// 					}
-
-// 					NewUser.password = hash;
-
-// 					NewUser.save()
-// 						.then((user) => {
-// 							const profileFields = {
-// 								user: user._id
-// 							};
-
-// 							Profile.findOne({
-// 								user: user._id
-// 							}).then((profile) => {
-// 								if (profile) {
-// 									Profile.findOneAndUpdate(
-// 										{
-// 											user: user._id
-// 										},
-// 										{
-// 											$set: profileFields
-// 										},
-// 										{
-// 											new: true
-// 										}
-// 									).then((profile) => res.json(profile));
-// 								} else {
-// 									new Profile(profileFields).save().then((profile) => res.json(profile));
-// 								}
-// 							});
-// 						})
-// 						.catch((err) => {
-// 							console.log(err);
-// 						});
-// 				});
-// 			});
-// 		}
-// 	});
-// });
-
 router.post('/register', (req, res) => {
 	console.log(req.body);
 	const { errors, isValid } = userRegisterInput(req.body);
@@ -95,103 +25,122 @@ router.post('/register', (req, res) => {
 		return res.status(400).json(errors);
 	}
 
-	User.findOne({ email: req.body.email }, function(err, user) {
-		if (user)
-			return res
-				.status(400)
-				.send({ msg: 'The email address you have entered is already associated with another account.' });
+	const name = req.body.name;
+	const email = req.body.email;
+	const password = req.body.password;
+	const role = req.body.role;
 
-		user = new User({
-			name: req.body.name,
-			email: req.body.email,
-			password: req.body.password
-		});
-		user.save(function(err) {
-			if (err) {
-				return res.status(500).send({ msg: err.message });
-			}
-			var token = new Token({ _userId: user._id, token: crypto.randomBytes(16).toString('hex') });
+	User.findOne({
+		email: email
+	}).then((user) => {
+		if (user) {
+			errors.email = 'User Already exist';
+			res.status(404).json(errors);
+		} else {
+			const NewUser = new User({
+				name,
+				email,
+				password,
+				role
+			});
 
-			token.save(function(err) {
-				if (err) {
-					return res.status(500).send({ msg: err.message });
-				}
-
-				var transporter = nodemailer.createTransport({
-					service: 'Sendgrid',
-					auth: { user: 'pratapneetesh@gmail.com', pass: '72090000Np' }
-				});
-				var mailOptions = {
-					from: 'npsparihar97@gmail.com',
-					to: user.email,
-					subject: 'Account Verification Token',
-					text:
-						'Hello,\n\n' +
-						'Please verify your account by clicking the link: \nhttp://' +
-						req.headers.host +
-						'/confirmation/' +
-						token.token +
-						'.\n'
-				};
-				transporter.sendMail(mailOptions, function(err) {
-					console.log(err);
+			bcrypt.genSalt(10, (err, salt) => {
+				bcrypt.hash(password, salt, (err, hash) => {
 					if (err) {
-						return res.status(500).send({ msg: err.message });
+						console.log(err);
 					}
-					res.status(200).send('A verification email has been sent to ' + user.email + '.');
+
+					NewUser.password = hash;
+
+					NewUser.save()
+						.then((user) => {
+							const profileFields = {
+								user: user._id
+							};
+
+							Profile.findOne({
+								user: user._id
+							}).then((profile) => {
+								if (profile) {
+									Profile.findOneAndUpdate(
+										{
+											user: user._id
+										},
+										{
+											$set: profileFields
+										},
+										{
+											new: true
+										}
+									).then((profile) => res.json(profile));
+								} else {
+									new Profile(profileFields).save().then((profile) => res.json(profile));
+								}
+							});
+						})
+						.catch((err) => {
+							console.log(err);
+						});
 				});
 			});
-		});
+		}
 	});
 });
 
-// router.post('/login', (req, res) => {
-// 	const { errors, isValid } = userLoginInput(req.body);
+// router.post('/register', (req, res) => {
+// 	console.log(req.body);
+// 	const { errors, isValid } = userRegisterInput(req.body);
 
 // 	if (!isValid) {
 // 		return res.status(400).json(errors);
 // 	}
 
-// const email = req.body.email;
-// const password = req.body.password;
+// 	User.findOne({ email: req.body.email }, function(err, user) {
+// 		if (user)
+// 			return res
+// 				.status(400)
+// 				.send({ msg: 'The email address you have entered is already associated with another account.' });
 
-// 	User.findOne({
-// 		email: email
-// 	}).then((user) => {
-// 		if (!user) {
-// 			errors.email = 'User Not found';
-// 			return res.status(400).json(errors);
-// 		}
-
-// 		bcrypt.compare(password, user.password).then((isMatch) => {
-// 			if (!isMatch) {
-// 				errors.password = 'password is incorrect';
-// 				return res.status(404).json(errors);
-// 			} else {
-// 				const payload = {
-// 					id: user.id,
-// 					name: user.name,
-// 					email: user.email,
-// 					role: user.role,
-// 					date: user.date
-// 				};
-
-// 				jwt.sign(
-// 					payload,
-// 					'secret',
-// 					{
-// 						expiresIn: 3600
-// 					},
-// 					(err, token) => {
-// 						return res
-// 							.json({
-// 								message: 'success',
-// 								token: 'Bearer ' + token
-// 							})
-// 							.catch(console.log(err));
-// 					}
-// 				);
+// 		user = new User({
+// 			name: req.body.name,
+// 			email: req.body.email,
+// 			password: req.body.password
+// 		});
+// 		user.save(function(err) {
+// 			if (err) {
+// 				return res.status(500).send({ msg: err.message });
 // 			}
+// 			var token = new Token({ _userId: user._id, token: crypto.randomBytes(16).toString('hex') });
+
+// 			token.save(function(err) {
+// 				if (err) {
+// 					return res.status(500).send({ msg: err.message });
+// 				}
+
+// 				var transporter = nodemailer.createTransport({
+// 					service: 'Sendgrid',
+// 					auth: { user: 'pratapneetesh@gmail.com', pass: '72090000Np' }
+// 				});
+// 				var mailOptions = {
+// 					from: 'pratapneetesh@gmail.com',
+// 					to: user.email,
+// 					subject: 'Account Verification Token',
+// 					text:
+// 						'Hello,\n\n' +
+// 						'Please verify your account by clicking the link: \nhttp://' +
+// 						req.headers.host +
+// 						'/confirmation/' +
+// 						token.token +
+// 						'.\n'
+// 				};
+// 				transporter.sendMail(mailOptions, function(err) {
+// 					console.log(err);
+// 					if (err) {
+// 						return res.status(500).send({ msg: err.message });
+// 					}
+// 					res.status(200).send('A verification email has been sent to ' + user.email + '.');
+// 				});
+// 			});
 // 		});
 // 	});
 // });
@@ -203,25 +152,86 @@ router.post('/login', (req, res) => {
 		return res.status(400).json(errors);
 	}
 
-	User.findOne({ email: req.body.email }, function(err, user) {
-		if (!user)
-			return res.status(401).send({
-				msg:
-					'The email address ' +
-					email +
-					' is not associated with any account. Double-check your email address and try again.'
-			});
+	const email = req.body.email;
+	const password = req.body.password;
 
-		bcrypt.compare(req.body.password, user.password, function(err, isMatch) {
-			if (!isMatch) return res.status(401).send({ msg: 'Invalid email or password' });
+	User.findOne({
+		email: email
+	}).then((user) => {
+		if (!user) {
+			errors.email = 'User Not found';
+			return res.status(400).json(errors);
+		}
 
-			if (!user.isVerified)
-				return res.status(401).send({ type: 'not-verified', msg: 'Your account has not been verified.' });
+		bcrypt.compare(password, user.password).then((isMatch) => {
+			if (!isMatch) {
+				errors.password = 'password is incorrect';
+				return res.status(404).json(errors);
+			} else {
+				const payload = {
+					id: user.id,
+					name: user.name,
+					email: user.email,
+					role: user.role,
+					date: user.date
+				};
 
-			res.send({ token: generateToken(user), user: user.toJSON() });
+				jwt.sign(
+					payload,
+					'secret',
+					{
+						expiresIn: 3600
+					},
+					(err, token) => {
+						return res
+							.json({
+								message: 'success',
+								token: 'Bearer ' + token
+							})
+							.catch(console.log(err));
+					}
+				);
+			}
 		});
 	});
 });
+
+// router.post('/login', (req, res) => {
+// 	const { errors, isValid } = userLoginInput(req.body);
+
+// 	if (!isValid) {
+// 		return res.status(400).json(errors);
+// 	}
+
+// 	User.findOne({ email: req.body.email }, function(err, user) {
+// 		if (!user)
+// 			return res.status(401).send({
+// 				msg:
+// 					'The email address ' +
+// 					req.body.email +
+// 					' is not associated with any account. Double-check your email address and try again.'
+// 			});
+// 		user.comparePassword(req.body.password, function(err, isMatch) {
+// 			if (!isMatch) return res.status(401).send({ msg: 'Invalid email or password' });
+
+// 			if (!user.isVerified)
+// 				return res.status(401).send({ type: 'not-verified', msg: 'Your account has not been verified.' });
+
+// 			// Login successful, write token, and send back user
+// 			res.send({ token: generateToken(user), user: user.toJSON() });
+// 		});
+// 	});
+// });
+// 		bcrypt.compare(req.body.password, user.password, function(err, isMatch) {
+// 			if (!isMatch) return res.status(401).send({ msg: 'Invalid email or password' });
+
+// 			if (!user.isVerified)
+// 				return res.status(401).send({ type: 'not-verified', msg: 'Your account has not been verified.' });
+
+// 			res.send({ token: generateToken(user), user: user.toJSON() });
+// 		});
+// 	});
+// });
 
 router.post('/confirmation', (req, res) => {
 	console.log(req.body);
@@ -276,11 +286,11 @@ router.post('/resend', (req, res) => {
 
 			var transporter = nodemailer.createTransport({
 				service: 'Sendgrid',
-				auth: { user: process.env.SENDGRID_USERNAME, pass: process.env.SENDGRID_PASSWORD }
+				auth: { user: 'pratapneetesh@gmail.com', pass: '72090000Np' }
 			});
 			var mailOptions = {
 				from: 'pratapneetesh@gmail.com',
-				to: user.email,
+				to: req.body.email,
 				subject: 'Account Verification Token',
 				text:
 					'Hello,\n\n' +

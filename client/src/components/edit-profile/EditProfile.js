@@ -157,7 +157,7 @@ class CreateProfile extends Component {
 							<Link to="/profiles" className="btn btn-light">
 								Go Back
 							</Link>
-							<h1 className="display-8 text-center">Edit Profile</h1>
+							<h1 className="display-8 text-center">Update Profile</h1>
 							<form onSubmit={this.onSubmit}>
 								<div className="row">
 									<div className="col">

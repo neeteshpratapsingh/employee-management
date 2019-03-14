@@ -11,9 +11,13 @@ const UserSchema = new Schema({
 		type: String,
 		unique: true
 	},
-	roles: {
+	role: {
 		type: 'String',
 		default: 'admin'
+	},
+	isAdmin: {
+		type: Boolean,
+		default: false
 	},
 	isVerified: {
 		type: Boolean,
@@ -44,10 +48,6 @@ const UserSchema = new Schema({
 	// role: {
 	// 	type: String,
 	// 	default: 'admin'
-	// },
-	// confirmed: {
-	// 	type: String,
-	// 	default: false
 	// },
 	// isAdmin: {
 	// 	type: Boolean,

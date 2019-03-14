@@ -10,17 +10,11 @@ class Navbar extends Component {
 		this.props.logoutUser();
 		window.location.href = '/login';
 	}
-
 	render() {
 		const { isAuthenticated, isAdmin } = this.props.auth;
 
 		const employeeLinks = (
 			<ul className="navbar-nav ml-auto">
-				{/* <li className="nav-item">
-					<Link className="nav-link" to="/register">
-						Employer Profile
-					</Link>
-				</li> */}
 				<li className="nav-item">
 					<Link className="nav-link" to="/dashboard">
 						Dashboard
@@ -34,7 +28,7 @@ class Navbar extends Component {
 				</li>
 				<li className="nav-item">
 					<Link className="nav-link" to="/edit-profile">
-						Edit Profile
+						Update Profile
 					</Link>
 				</li>
 				<li className="nav-item">
