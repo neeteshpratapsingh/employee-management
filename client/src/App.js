@@ -18,6 +18,7 @@ import Dashboard from './components/dashboard/Dashboard';
 import Profiles from './components/profiles/Profiles';
 import EditProfile from './components/edit-profile/EditProfile';
 import Posts from './components/posts/Posts';
+import Feedbacks from './components/feedbacks/Feedbacks';
 import Post from './components/post/Post';
 import EditLeave from './components/edit-leave/EditLeave';
 import Leaves from './components/leaves/Leaves';
@@ -59,7 +60,9 @@ class App extends Component {
 							<Switch>
 								<PrivateRoute exact path="/feed" component={Posts} />
 							</Switch>
-
+							<Switch>
+								<PrivateRoute exact path="/feedback" component={Feedbacks} />
+							</Switch>
 							<Switch>
 								<PrivateRoute exact path="/post/:id" component={Post} />
 							</Switch>

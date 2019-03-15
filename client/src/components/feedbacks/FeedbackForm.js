@@ -47,12 +47,12 @@ class FeedbackForm extends Component {
 		return (
 			<div className="feedback-form mb-3">
 				<div className="card card-info">
-					<div className="card-header bg-info text-white">Write Some Feedback/Suggestion</div>
+					<div className="card-header bg-info text-white">Employee's Feedback</div>
 					<div className="card-body">
 						<form onSubmit={this.onSubmit}>
 							<div className="form-group">
 								<TextAreaFieldGroup
-									placeholder="Write your Feedback/Suggestion"
+									placeholder="Write Feedback here"
 									name="text"
 									value={this.state.text}
 									onChange={this.onChange}
@@ -81,4 +81,4 @@ const mapStateToProps = (state) => ({
 	errors: state.errors
 });
 
-export default connect(mapStateToProps, { addfeedback })(FeedbackForm);
+export default connect(mapStateToProps, { addFeedback })(FeedbackForm);

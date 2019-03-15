@@ -13,7 +13,7 @@ import {
 export const addFeedback = (feedbackData) => (dispatch) => {
 	dispatch(clearErrors());
 	axios
-		.post('/api/feedback', feedbackData)
+		.post('/api/feedbacks', feedbackData)
 		.then((res) =>
 			dispatch({
 				type: ADD_FEEDBACK,
@@ -28,10 +28,10 @@ export const addFeedback = (feedbackData) => (dispatch) => {
 		);
 };
 
-export const GET_FEEDBACKS = () => (dispatch) => {
+export const getFeedbacks = () => (dispatch) => {
 	dispatch(setFeedbackLoading());
 	axios
-		.get('/api/feedback')
+		.get('/api/feedbacks')
 		.then((res) =>
 			dispatch({
 				type: GET_FEEDBACKS,
@@ -49,7 +49,7 @@ export const GET_FEEDBACKS = () => (dispatch) => {
 export const getFeedback = (id) => (dispatch) => {
 	dispatch(setFeedbackLoading());
 	axios
-		.get(`/api/feedback/${id}`)
+		.get(`/api/feedbacks/${id}`)
 		.then((res) =>
 			dispatch({
 				type: GET_FEEDBACK,
@@ -66,7 +66,7 @@ export const getFeedback = (id) => (dispatch) => {
 
 export const deleteFeedback = (id) => (dispatch) => {
 	axios
-		.delete(`/api/Feedback/${id}`)
+		.delete(`/api/feedbacks/${id}`)
 		.then((res) =>
 			dispatch({
 				type: DELETE_FEEDBACK,

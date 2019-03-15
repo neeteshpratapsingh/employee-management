@@ -289,15 +289,6 @@ class CreateLeave extends Component {
 											info="select your 3rd Branch Preference"
 										/>
 									</div>
-									{/* <div className="col-4">
-										<TextFieldGroup
-											name="already applied"
-											value={`${filterleaves(this.state.branch3) + 1}`}
-											onChange={this.onChange}
-											info={`Your Application in ${this.state.branch3} Branch `}
-											enabled="enabled"
-										/>
-									</div> */}
 								</div>
 
 								{errors.email}

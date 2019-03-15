@@ -17,6 +17,7 @@ const Token = require('../../models/Token');
 
 require('../../config/passport')(passport);
 
+// Without verification
 // router.post('/register', (req, res) => {
 // 	console.log(req.body);
 // 	const { errors, isValid } = userRegisterInput(req.body);
@@ -87,6 +88,65 @@ require('../../config/passport')(passport);
 // 	});
 // });
 
+// With verification
+// router.post('/register', (req, res) => {
+// 	console.log(req.body);
+// 	const { errors, isValid } = userRegisterInput(req.body);
+
+// 	if (!isValid) {
+// 		return res.status(400).json(errors);
+// 	}
+// 	User.findOne({ email: req.body.email }, function(err, user) {
+// 		if (user)
+// 			return res
+// 				.status(400)
+// 				.send({ msg: 'The email address you have entered is already associated with another account.' });
+
+// 		user = new User({
+// 			name: req.body.name,
+// 			email: req.body.email,
+// 			password: req.body.password
+// 		});
+// 		user.save(function(err) {
+// 			if (err) {
+// 				return res.status(500).send({ msg: err.message });
+// 			}
+// 			var token = new Token({ _userId: user._id, token: crypto.randomBytes(16).toString('hex') });
+
+// 			token.save(function(err) {
+// 				if (err) {
+// 					return res.status(500).send({ msg: err.message });
+// 				}
+
+// 				var transporter = nodemailer.createTransport({
+// 					service: 'Sendgrid',
+// 					auth: { user: 'npsparihar97@gmail.com', pass: '72090000Np' }
+// 				});
+// 				var mailOptions = {
+// 					from: 'npsparihar97@gmail.com',
+// 					to: user.email,
+// 					subject: 'Account Verification Token',
+// 					text:
+// 						'Hello,\n\n' +
+// 						'Please verify your account by clicking the link: \nhttp://' +
+// 						req.headers.host +
+// 						'/confirmation/' +
+// 						token.token +
+// 						'.\n'
+// 				};
+// 				transporter.sendMail(mailOptions, function(err) {
+// 					console.log(err);
+// 					if (err) {
+// 						return res.status(500).send({ msg: err.message });
+// 					}
+// 					res.status(200).send('A verification email has been sent to ' + user.email + '.');
+// 				});
+// 			});
+// 		});
+// 	});
+// });
+
+//tried Complete verification
 router.post('/register', (req, res) => {
 	console.log(req.body);
 	const { errors, isValid } = userRegisterInput(req.body);
@@ -94,8 +154,10 @@ router.post('/register', (req, res) => {
 	if (!isValid) {
 		return res.status(400).json(errors);
 	}
+	email = req.body.email;
+	password = req.body.password;
 
-	User.findOne({ email: req.body.email }, function(err, user) {
+	User.findOne({ email: email }, function(err, user) {
 		if (user)
 			return res
 				.status(400)
@@ -116,7 +178,46 @@ router.post('/register', (req, res) => {
 				if (err) {
 					return res.status(500).send({ msg: err.message });
 				}
+				bcrypt.genSalt(10, (err, salt) => {
+					bcrypt.hash(password, salt, (err, hash) => {
+						if (err) {
+							console.log(err);
+						}
 
+						user.password = hash;
+
+						user
+							.save()
+							.then((user) => {
+								const profileFields = {
+									user: user._id
+								};
+
+								Profile.findOne({
+									user: user._id
+								}).then((profile) => {
+									if (profile) {
+										Profile.findOneAndUpdate(
+											{
+												user: user._id
+											},
+											{
+												$set: profileFields
+											},
+											{
+												new: true
+											}
+										).then((profile) => res.json(profile));
+									} else {
+										new Profile(profileFields).save().then((profile) => res.json(profile));
+									}
+								});
+							})
+							.catch((err) => {
+								console.log(err);
+							});
+					});
+				});
 				var transporter = nodemailer.createTransport({
 					service: 'Sendgrid',
 					auth: { user: 'npsparihar97@gmail.com', pass: '72090000Np' }
@@ -202,6 +303,7 @@ router.post('/login', (req, res) => {
 	if (!isValid) {
 		return res.status(400).json(errors);
 	}
+	const password = req.body.password;
 
 	User.findOne({ email: req.body.email }, function(err, user) {
 		if (!user)
@@ -211,26 +313,39 @@ router.post('/login', (req, res) => {
 					req.body.email +
 					' is not associated with any account. Double-check your email address and try again.'
 			});
-		user.comparePassword(req.body.password, function(err, isMatch) {
-			if (!isMatch) return res.status(401).send({ msg: 'Invalid email or password' });
 
-			if (!user.isVerified)
-				return res.status(401).send({ type: 'not-verified', msg: 'Your account has not been verified.' });
+		bcrypt.compare(password, user.password).then((isMatch) => {
+			if (!isMatch) {
+				errors.password = 'password is incorrect';
+				return res.status(404).json(errors);
+			} else {
+				const payload = {
+					id: user.id,
+					name: user.name,
+					email: user.email,
+					role: user.role,
+					date: user.date
+				};
 
-			res.send({ token: generateToken(user), user: user.toJSON() });
+				jwt.sign(
+					payload,
+					'secret',
+					{
+						expiresIn: 3600
+					},
+					(err, token) => {
+						return res
+							.json({
+								message: 'success',
+								token: 'Bearer ' + token
+							})
+							.catch(console.log(err));
+					}
+				);
+			}
 		});
 	});
 });
-// 		bcrypt.compare(req.body.password, user.password, function(err, isMatch) {
-// 			if (!isMatch) return res.status(401).send({ msg: 'Invalid email or password' });
-
-// 			if (!user.isVerified)
-// 				return res.status(401).send({ type: 'not-verified', msg: 'Your account has not been verified.' });
-
-// 			res.send({ token: generateToken(user), user: user.toJSON() });
-// 		});
-// 	});
-// });
 
 router.post('/confirmation', (req, res) => {
 	console.log(req.body);

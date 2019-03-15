@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PostForm from './PostForm';
 import PostFeed from './PostFeed';
@@ -24,7 +25,11 @@ class Posts extends Component {
 				<div className="container">
 					<div className="row">
 						<div className="col-md-12">
+							<Link to="/dashboard" className="btn btn-light mb-3">
+								Back to Dashboard
+							</Link>
 							<PostForm />
+
 							{postContent}
 						</div>
 					</div>
