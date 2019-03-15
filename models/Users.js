@@ -1,4 +1,3 @@
-// const Company = require('./Company');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -56,10 +55,6 @@ const UserSchema = new Schema({
 	Date: {
 		type: Date,
 		default: Date.now
-	},
-	company: {
-		type: Schema.Types.ObjectId,
-		ref: 'Company'
 	}
 });
 
